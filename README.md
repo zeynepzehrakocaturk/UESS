@@ -1,6 +1,6 @@
 <div align="center">
 
-# Universite Sinav Sistemi Planlama
+# Üniversite Sınav Sistemi Planlama
 
 Flask tabanli bu uygulama; ogrenci, ders, ogretim uyesi ve derslik verilerini kullanarak sinav planlama surecini otomatiklestirir, cakismalari azaltir ve kaynak kullanimini optimize eder.
 
