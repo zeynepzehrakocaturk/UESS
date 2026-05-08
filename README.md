@@ -6,7 +6,7 @@
 Flask tabanli bu uygulama; ogrenci, ders, ogretim uyesi ve derslik verilerini kullanarak sinav planlama surecini otomatiklestirir, cakismalari azaltir ve kaynak kullanimini optimize eder.
 
 </div>
-
+<div align="center">
 ## Hızlı Erişim
 
 | Bölüm | Açıklama |
@@ -160,4 +160,4 @@ export DATABASE_URL=sqlite:///data.db
 ## Lisans
 
 MIT License
-
+</div>
