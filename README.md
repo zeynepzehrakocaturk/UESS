@@ -1,6 +1,6 @@
 <h1 align="center">University Examination Scheduling System</h1>
 
-<p align="center">
+</p>
   <i>An automated, high-performance Flask application engineered to optimize examination schedules, mitigate resource conflicts, and maximize classroom utilization through algorithmic constraint satisfaction.</i>
 </p>
 
