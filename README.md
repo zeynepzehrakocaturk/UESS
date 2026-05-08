@@ -1,15 +1,15 @@
-<div align="center">
+<h1 align="center">University Examination Scheduling System</h1>
 
-# University Examination Scheduling System
+<p align="center">
+  <i>An automated, high-performance Flask application engineered to optimize examination schedules, mitigate resource conflicts, and maximize classroom utilization through algorithmic constraint satisfaction.</i>
+</p>
 
-*An automated, high-performance Flask application engineered to optimize examination schedules, mitigate resource conflicts, and maximize classroom utilization through algorithmic planning.*
-
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-Framework-black.svg?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![SQLite](https://img.shields.io/badge/SQLite-Database-003B57.svg?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-</div>
+<p align="center">
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8+-00599C?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
+  <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Flask-Framework-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"></a>
+  <a href="https://www.sqlite.org/"><img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-F2C94C?style=for-the-badge&labelColor=333333" alt="License: MIT"></a>
+</p>
 
 ---
 
@@ -17,12 +17,11 @@
 
 | Section | Description |
 | :--- | :--- |
-| **Purpose & Scope** | System objectives and core deliverables |
-| **Installation** | Environment setup and initialization procedures |
-| **Execution** | Application startup parameters and commands |
-| **Architecture** | System layers, routing, and responsibilities |
-| **Configuration** | Environment variables and database connectivity |
-| **Workflow** | Dashboard navigation and scheduling lifecycle |
+| **[Purpose & Scope](#purpose--scope)** | System objectives and core deliverables |
+| **[System Architecture](#system-architecture)** | Multi-tier application layers and data flow |
+| **[Installation](#prerequisites--installation)** | Environment setup and initialization procedures |
+| **[Configuration](#environment-variables)** | Operational parameters and database connectivity |
+| **[Execution](#execution)** | Startup commands and deployment |
 
 ---
 
@@ -32,64 +31,45 @@
 | :--- | :--- |
 | **Automation** | Eliminates manual intervention and dependencies in the exam scheduling lifecycle. |
 | **Conflict Resolution** | Mitigates scheduling overlaps for both students and academic personnel. |
-| **Resource Optimization** | Maximizes the efficiency of spatial allocations based on classroom capacities. |
+| **Resource Optimization** | Maximizes the efficiency of spatial allocations based on strictly enforced classroom capacities. |
 | **Administrative Efficiency** | Streamlines operational tracking and generates comprehensive analytical reports. |
 
 ---
 
-## Key Features
+## System Architecture
 
-* **Algorithmic Scheduling:** Automated examination allocation utilizing a custom constraint-satisfaction algorithm.
-* **Academic Management:** Comprehensive administration modules for students, courses, and faculty members.
-* **Capacity Tracking:** Intelligent classroom management with strict capacity limit enforcement.
-* **Secure Authorization:** Role-based access control (RBAC) and secure administrative dashboard operations.
-* **Data Integration:** Seamless bulk data import and export operations via CSV pipelines.
+The application is structured around a multi-tier architectural pattern, ensuring strict decoupling between the client interface, business logic, algorithmic processing, and data persistence.
 
----
+```mermaid
+flowchart LR
+    subgraph Client Layer
+        A[Web Browser]
+    end
+    
+    subgraph Application Layer
+        B(Flask Routing)
+        C{Business Logic}
+        F[Jinja2 Templates]
+    end
+    
+    subgraph Core Engine
+        E[Scheduling Algorithm]
+    end
+    
+    subgraph Persistence Layer
+        D[(SQLite / SQLAlchemy ORM)]
+    end
 
-## Prerequisites & Installation
-
-### System Requirements
-
-| Component | Minimum Version |
-| :--- | :---: |
-| **Python** | `3.8+` |
-| **Package Manager** | `pip` |
-
-### Environment Setup
-
-1. **Initialize a virtual environment:**
-   ```bash
-   python -m venv venv
-   
+    A -->|HTTP Requests| B
+    B --> C
+    C <-->|Read / Write| D
+    C <-->|Constraint Evaluation| E
+    C -->|Context Data| F
+    F -->|Rendered UI| A
 ```
 
-2. **Activate the environment:**
-   * **PowerShell:** `.\venv\Scripts\Activate.ps1`
-   * **Command Prompt:** `.\venv\Scripts\activate.bat`
-   * **Linux/macOS:** `source venv/bin/activate`
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   
-```
-
----
-
-## Execution
-
-| Environment / OS | Execution Command |
-| :--- | :--- |
-| **Direct Execution** | `python app.py` |
-| **Windows Shell** | `.\run.bat` |
-| **Linux/macOS Shell** | `./run.sh` |
-
-> **Note:** Once initialized, the application will be accessible at `http://127.0.0.1:5000`.
-
----
-
-## System Architecture & Directory Structure
+<details>
+<summary><strong>Explore Directory Structure</strong> <i>(Click to expand)</i></summary>
 
 ```text
 project-root/
@@ -103,60 +83,103 @@ project-root/
 └── algorithms/
     └── planlama_algoritmasi.py # Core Scheduling Algorithm
 ```
-
-### Core Scheduling Algorithm
-
-The scheduling logic is centralized within `algorithms/planlama_algoritmasi.py` and strictly evaluates the following criteria:
-1. **Student Isolation:** Prevents concurrent exam assignments for any individual student.
-2. **Spatial Constraints:** Ensures examination allocations strictly adhere to physical classroom capacities.
-3. **Temporal Optimization:** Maximizes the utilization density of available academic time slots.
+</details>
 
 ---
 
-## Database Configuration
+## Core Scheduling Engine
 
-| Attribute | Implementation Detail |
-| :--- | :--- |
-| **ORM Framework** | SQLAlchemy |
-| **Default Engine** | SQLite |
-| **Connection String** | `sqlite:///data.db` |
+The algorithmic logic, centralized within `algorithms/planlama_algoritmasi.py`, acts as the computational brain of the system. It evaluates matrices based on three absolute constraints:
 
-To inspect or debug the current database schema state, execute:
-```bash
-python veritabani_goruntule.py
+1. **Student Isolation:** Guarantees zero concurrent exam assignments for any individual student record.
+2. **Spatial Boundaries:** Enforces rigid allocation limits, ensuring assigned seats never exceed physical classroom capacities.
+3. **Temporal Density:** Compresses the scheduling matrix to maximize the utilization of available academic time slots.
+
+---
+
+## Prerequisites & Installation
+
+### System Requirements
+
+| Component | Minimum Specification |
+| :--- | :---: |
+| **Interpreter** | `Python 3.8+` |
+| **Package Manager** | `pip` |
+
+### Environment Setup
+
+1. **Initialize an isolated virtual environment:**
+   ```bash
+   python -m venv venv
+   
+```
+
+2. **Activate the environment:**
+   * **Linux/macOS:** `source venv/bin/activate`
+   * **Windows (PowerShell):** `.\venv\Scripts\Activate.ps1`
+   * **Windows (CMD):** `.\venv\Scripts\activate.bat`
+
+3. **Install exact dependencies:**
+   ```bash
+   python -m pip install --upgrade pip
+   pip install -r requirements.txt
+   
 ```
 
 ---
 
 ## Environment Variables
 
-For production environments, ensure the following variables are properly configured.
+For both local development and production deployments, the system behavior is dictated by a `.env` configuration file located at the repository root.
 
-| Variable | Purpose | Example Value |
-| :--- | :--- | :--- |
-| `FLASK_ENV` | Defines the runtime environment | `development` |
-| `SECRET_KEY` | Cryptographic key for session management | `your-secure-secret` |
-| `DATABASE_URL` | Defines the database target | `sqlite:///data.db` |
+```env
+# Application runtime mode (development/production)
+FLASK_ENV=development
 
-*Example configuration (Linux/macOS):*
-```bash
-export FLASK_ENV=development
-export SECRET_KEY=supersecretkey
-export DATABASE_URL=sqlite:///data.db
+# Cryptographic salt for secure session management
+SECRET_KEY=your_secure_cryptographic_key
+
+# Database target connection string
+DATABASE_URL=sqlite:///data.db
 ```
+
+> [!IMPORTANT]
+> To maintain security protocols, never commit your `.env` file to version control. Utilize a `.env.example` template for repository tracking.
 
 ---
 
-## Operational Workflow
+## Database Management
 
-1. **Initialize Data:** Populate foundational parameters (classrooms, terms) via the administrative panel.
-2. **Bulk Import:** Ingest student and course registry data utilizing the CSV integration module.
-3. **Execute Algorithm:** Trigger the automated examination scheduling sequence.
-4. **Validate & Export:** Review the generated schedules through the analytics interface and export as necessary.
+| Specification | Implementation Detail |
+| :--- | :--- |
+| **ORM Framework** | SQLAlchemy |
+| **Default Engine** | SQLite (Production ready for PostgreSQL/MySQL via URI switch) |
+| **Schema Target** | `sqlite:///data.db` |
 
+> [!TIP]
+> A dedicated CLI utility is provided to inspect the current state of the database schema without requiring external GUI tools.
+> ```bash
+> python veritabani_goruntule.py
+> 
+
+
+## Execution
+
+Initialize the application server utilizing the appropriate command for your host operating system.
+
+| Host OS | Execution Command |
+| :--- | :--- |
+| **Platform Agnostic** | `python app.py` |
+| **Linux / macOS** | `./run.sh` |
+| **Windows** | `.\run.bat` |
+
+> [!NOTE]
+> Upon successful initialization, the application binds to the local interface and will be accessible at `http://127.0.0.1:5000`.
+
+---
 
 <div align="center">
-
-Distributed under the **MIT License**.
-
+  <br>
+  Distributed under the <strong>MIT License</strong>.
 </div>
+
