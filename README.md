@@ -1,163 +1,162 @@
 <div align="center">
 
-# Üniversite Sınav Sistemi Planlama
+# University Examination Scheduling System
+
+*An automated, high-performance Flask application engineered to optimize examination schedules, mitigate resource conflicts, and maximize classroom utilization through algorithmic planning.*
+
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-Framework-black.svg?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![SQLite](https://img.shields.io/badge/SQLite-Database-003B57.svg?logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 </div>
 
-Flask tabanli bu uygulama; ogrenci, ders, ogretim uyesi ve derslik verilerini kullanarak sinav planlama surecini otomatiklestirir, cakismalari azaltir ve kaynak kullanimini optimize eder.
+---
 
-</div>
-<div align="center">
-## Hızlı Erişim
+## Quick Access
 
-| Bölüm | Açıklama |
-| --- | --- |
-| Amaç ve Kapsam | Sistem hedefleri ve kazanımlar |
-| Kurulum | Ortamı hazırlama adımları |
-| Çalıştırma | Uygulamayı başlatma komutları |
-| Mimarî | Katmanlar ve sorumluluklar |
-| Konfigürasyon | Ortam değişkenleri ve DB bağlantısı |
-| Kullanım | Panel ve planlama akışı |
+| Section | Description |
+| :--- | :--- |
+| **Purpose & Scope** | System objectives and core deliverables |
+| **Installation** | Environment setup and initialization procedures |
+| **Execution** | Application startup parameters and commands |
+| **Architecture** | System layers, routing, and responsibilities |
+| **Configuration** | Environment variables and database connectivity |
+| **Workflow** | Dashboard navigation and scheduling lifecycle |
 
-## Amaç ve Kapsam
+---
 
-| Hedef | Detay |
-| --- | --- |
-| Otomasyon | Sınav planlama sürecini manuel bağımlılıktan çıkarma |
-| Çakışma Önleme | Öğrenci ve ders çakışmalarını azaltma |
-| Kaynak Optimizasyonu | Derslik kapasitesini etkin kullanma |
-| Yönetim Kolaylığı | Raporlama ve operasyonel takibi hızlandırma |
+## Purpose & Scope
 
-## Özellikler
+| Objective | Detailed Description |
+| :--- | :--- |
+| **Automation** | Eliminates manual intervention and dependencies in the exam scheduling lifecycle. |
+| **Conflict Resolution** | Mitigates scheduling overlaps for both students and academic personnel. |
+| **Resource Optimization** | Maximizes the efficiency of spatial allocations based on classroom capacities. |
+| **Administrative Efficiency** | Streamlines operational tracking and generates comprehensive analytical reports. |
 
-| Modül | Yetkinlik |
-| --- | --- |
-| Planlama | Sınav planlama algoritması ile otomatik yerleştirme |
-| Akademik Yönetim | Öğrenci, ders ve öğretim üyesi yönetimi |
-| Derslik Yönetimi | Sınıf ve kapasite bazlı planlama |
-| Yetkilendirme | Kimlik doğrulama ve yönetici paneli |
-| Veri Aktarımı | CSV ile toplu yükleme |
-| Analiz | Raporlama ve değerlendirme ekranları |
+---
 
-## Gereksinimler
+## Key Features
 
-| Bileşen | Sürüm |
-| --- | --- |
-| Python | 3.8+ |
-| Paket Yöneticisi | pip |
+* **Algorithmic Scheduling:** Automated examination allocation utilizing a custom constraint-satisfaction algorithm.
+* **Academic Management:** Comprehensive administration modules for students, courses, and faculty members.
+* **Capacity Tracking:** Intelligent classroom management with strict capacity limit enforcement.
+* **Secure Authorization:** Role-based access control (RBAC) and secure administrative dashboard operations.
+* **Data Integration:** Seamless bulk data import and export operations via CSV pipelines.
 
-## Kurulum
+---
 
-| Adım | Komut |
-| --- | --- |
-| Sanal ortam oluştur | `python -m venv venv` |
-| PowerShell aktivasyon | `venv\Scripts\Activate.ps1` |
-| CMD aktivasyon | `venv\Scripts\activate.bat` |
-| Linux/macOS aktivasyon | `source venv/bin/activate` |
-| Bağımlılıklar | `pip install -r requirements.txt` |
+## Prerequisites & Installation
 
-## Uygulamayı Çalıştırma
+### System Requirements
 
-| Senaryo | Komut |
-| --- | --- |
-| Doğrudan başlatma | `python app.py` |
-| Windows kısayol | `run.bat` |
-| Linux/macOS kısayol | `./run.sh` |
+| Component | Minimum Version |
+| :--- | :---: |
+| **Python** | `3.8+` |
+| **Package Manager** | `pip` |
 
-Uygulama adresi: http://127.0.0.1:5000
+### Environment Setup
 
-## Proje Yapısı
+1. **Initialize a virtual environment:**
+   ```bash
+   python -m venv venv
+   
+```
+
+2. **Activate the environment:**
+   * **PowerShell:** `.\venv\Scripts\Activate.ps1`
+   * **Command Prompt:** `.\venv\Scripts\activate.bat`
+   * **Linux/macOS:** `source venv/bin/activate`
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   
+```
+
+---
+
+## Execution
+
+| Environment / OS | Execution Command |
+| :--- | :--- |
+| **Direct Execution** | `python app.py` |
+| **Windows Shell** | `.\run.bat` |
+| **Linux/macOS Shell** | `./run.sh` |
+
+> **Note:** Once initialized, the application will be accessible at `http://127.0.0.1:5000`.
+
+---
+
+## System Architecture & Directory Structure
 
 ```text
 project-root/
-|-- app.py
-|-- config.py
-|-- requirements.txt
-|-- models/                  # Veritabani modelleri
-|-- routes/                  # Flask route katmani
-|-- templates/               # Jinja2 gorunumleri
-|-- static/                  # CSS, JS ve statik varliklar
-|-- algorithms/
-|   |-- planlama_algoritmasi.py
-|-- veritabani_goruntule.py
-|-- run.sh
-|-- run.bat
+├── app.py                     # Application entry point
+├── config.py                  # Environment configurations
+├── requirements.txt           # Dependency declarations
+├── models/                    # Data Access Layer (SQLAlchemy ORM)
+├── routes/                    # Business Logic Layer (Flask Blueprints)
+├── templates/                 # Presentation Layer (Jinja2 Templates)
+├── static/                    # Static Assets (CSS, JavaScript)
+└── algorithms/
+    └── planlama_algoritmasi.py # Core Scheduling Algorithm
 ```
 
-## Sistem Mimarisi
+### Core Scheduling Algorithm
 
-| Katman | Sorumluluk |
-| --- | --- |
-| Sunum Katmanı | `templates/` ile kullanıcı arayüzü |
-| İş Mantığı Katmanı | `routes/` ile akış ve kurallar |
-| Veri Katmanı | `models/` ile ORM ve veritabanı ilişkileri |
-| Algoritma Katmanı | `algorithms/planlama_algoritmasi.py` ile planlama kararları |
+The scheduling logic is centralized within `algorithms/planlama_algoritmasi.py` and strictly evaluates the following criteria:
+1. **Student Isolation:** Prevents concurrent exam assignments for any individual student.
+2. **Spatial Constraints:** Ensures examination allocations strictly adhere to physical classroom capacities.
+3. **Temporal Optimization:** Maximizes the utilization density of available academic time slots.
 
-## Planlama Algoritması
+---
 
-| Kriter | Açıklama |
-| --- | --- |
-| Öğrenci Çakışması | Aynı öğrenciye çakışan sınav atamasını engelleme |
-| Derslik Kapasitesi | Sınıf kontenjanına uygun yerleşim |
-| Zaman Optimizasyonu | Uygun zaman aralıklarını verimli kullanma |
+## Database Configuration
 
-Algoritma implementasyonu: `algorithms/planlama_algoritmasi.py`
+| Attribute | Implementation Detail |
+| :--- | :--- |
+| **ORM Framework** | SQLAlchemy |
+| **Default Engine** | SQLite |
+| **Connection String** | `sqlite:///data.db` |
 
-## Veritabanı
-
-| Başlık | Detay |
-| --- | --- |
-| ORM | SQLAlchemy |
-| Varsayılan DB | SQLite |
-| Örnek bağlantı | `sqlite:///data.db` |
-| Model konumu | `models/` |
-
-Mevcut veritabanını incelemek için:
-
+To inspect or debug the current database schema state, execute:
 ```bash
 python veritabani_goruntule.py
 ```
 
-## Konfigürasyon
+---
 
-| Değişken | Açıklama | Örnek |
-| --- | --- | --- |
-| `FLASK_ENV` | Çalışma ortamı | `development` |
-| `SECRET_KEY` | Güvenlik anahtarı | `secret` |
-| `DATABASE_URL` | Veritabanı bağlantısı | `sqlite:///data.db` |
+## Environment Variables
 
-PowerShell:
+For production environments, ensure the following variables are properly configured.
 
-```powershell
-$env:FLASK_ENV = "development"
-$env:SECRET_KEY = "secret"
-$env:DATABASE_URL = "sqlite:///data.db"
-```
+| Variable | Purpose | Example Value |
+| :--- | :--- | :--- |
+| `FLASK_ENV` | Defines the runtime environment | `development` |
+| `SECRET_KEY` | Cryptographic key for session management | `your-secure-secret` |
+| `DATABASE_URL` | Defines the database target | `sqlite:///data.db` |
 
-Linux/macOS:
-
+*Example configuration (Linux/macOS):*
 ```bash
 export FLASK_ENV=development
-export SECRET_KEY=secret
+export SECRET_KEY=supersecretkey
 export DATABASE_URL=sqlite:///data.db
 ```
 
-## Kullanım Akışı
+---
 
-| Sıra | İşlem |
-| --- | --- |
-| 1 | Yönetici panelinden temel verileri ekleyin |
-| 2 | CSV ile toplu öğrenci/ders verisi yükleyin |
-| 3 | Sınav planlama sürecini başlatın |
-| 4 | Oluşan planları rapor ekranından doğrulayın |
+## Operational Workflow
 
-## Geliştirme
+1. **Initialize Data:** Populate foundational parameters (classrooms, terms) via the administrative panel.
+2. **Bulk Import:** Ingest student and course registry data utilizing the CSV integration module.
+3. **Execute Algorithm:** Trigger the automated examination scheduling sequence.
+4. **Validate & Export:** Review the generated schedules through the analytics interface and export as necessary.
 
-1. Fork oluşturun.
-2. `feature/...` formatında yeni bir branch açın.
-3. Değişiklikleri commit edin.
-4. Pull request gönderin.
 
-## Lisans
+<div align="center">
 
-MIT License
+Distributed under the **MIT License**.
+
 </div>
