@@ -154,9 +154,7 @@ flowchart LR
     C -->|Context Data| F
     F -->|Rendered UI| A
 ```
-
-<details>
-<summary><strong>Explore Directory Structure</strong> <i></i></summary>
+## Explore Directory Structure
 
 ```text
 project-root/
