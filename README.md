@@ -12,7 +12,93 @@
 </p>
 
 ---
+## Screenshots
 
+<details>
+<summary>View Screenshots</summary>
+
+<br>
+
+<p align="center">
+  <img src="docs/user-login.png" width="800">
+  <br>
+  <strong>User Login Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/admin-dashboard.png" width="800">
+  <br>
+  <strong>Admin Dashboard Home</strong>
+</p>
+
+<p align="center">
+  <img src="docs/course-management.png" width="800">
+  <br>
+  <strong>Course Management Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/classroom-management.png" width="800">
+  <br>
+  <strong>Classroom Management Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/exam-scheduling.png" width="800">
+  <br>
+  <strong>Exam Scheduling Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/student-management.png" width="800">
+  <br>
+  <strong>Student Management Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/instructor-management.png" width="800">
+  <br>
+  <strong>Instructor Management Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/special-case-management.png" width="800">
+  <br>
+  <strong>Special Case Management Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/management-panel.png" width="800">
+  <br>
+  <strong>Management Panel</strong>
+</p>
+
+<p align="center">
+  <img src="docs/reporting.png" width="800">
+  <br>
+  <strong>Reporting Screen</strong>
+</p>
+
+<p align="center">
+  <img src="docs/exam-timetable.png" width="800">
+  <br>
+  <strong>Exam Timetable Panel</strong>
+</p>
+
+<p align="center">
+  <img src="docs/my-exams.png" width="800">
+  <br>
+  <strong>My Exams Panel</strong>
+</p>
+
+<p align="center">
+  <img src="docs/database-viewer.png" width="800">
+  <br>
+  <strong>Database Viewer Screen</strong>
+</p>
+
+</details>
+---
 ## Quick Access
 
 | Section | Description |
