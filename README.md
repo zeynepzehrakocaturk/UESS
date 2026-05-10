@@ -156,7 +156,7 @@ flowchart LR
 ```
 
 <details>
-<summary><strong>Explore Directory Structure</strong> <i>(Click to expand)</i></summary>
+<summary><strong>Explore Directory Structure</strong> <i></i></summary>
 
 ```text
 project-root/
